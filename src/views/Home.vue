@@ -37,9 +37,35 @@
 
     <h1>Jogos no Steam</h1>
     <p style="color:#819997;">Encontra os jogos para PC mais recentes, mais vendidos e em promoção no Steam</p>
-    <div v-for="game in games.slice(0, 10)" :key="game.gameID">
-    <img :src="game.thumb" :alt="game.title">
+    <div >
+    <img >
     </div>
+
+     <b-carousel
+      id="carousel-1"
+      v-model="slide"
+      :interval="4000"
+      controls
+      indicators
+      background="#ababab"
+      img-width="1024"
+      img-height="480"
+      style="text-shadow: 1px 1px 2px #333;"
+      @sliding-start="onSlideStart"
+      @sliding-end="onSlideEnd"
+      
+    >
+        <b-carousel-slide v-for="game in games.slice(0, 10)" :key="game.gameID">
+        <template #img>
+          <img
+            class="d-block img-fluid w-100"
+            width="1024"
+            height="480"
+            :src="game.thumb" :alt="game.title"
+          >
+        </template>
+      </b-carousel-slide>
+    </b-carousel>
   </div>
 </template>
 
